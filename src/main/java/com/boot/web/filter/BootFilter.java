@@ -12,7 +12,7 @@ public class BootFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        System.out.println("======开始init======");
     }
 
     @Override
@@ -23,6 +23,6 @@ public class BootFilter implements Filter {
 
     @Override
     public void destroy() {
-
+        System.out.println("======开始destroy======");
     }
 }

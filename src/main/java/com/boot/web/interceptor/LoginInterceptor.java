@@ -23,7 +23,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         Object obj = httpServletRequest.getSession().getAttribute("user");
         if (null == obj) {
             logger.error("未登录");
-            throw new Exception("未登录");
+            return true;
+            //throw new Exception("未登录");
         }
         logger.info("用户信息:" + obj);
         return true;
