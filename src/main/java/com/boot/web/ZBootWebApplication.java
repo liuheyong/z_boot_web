@@ -6,7 +6,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.annotation.Order;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -20,7 +19,10 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 public class ZBootWebApplication extends DefaultController implements CommandLineRunner {
 
     public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(ZBootWebApplication.class, args);
+        SpringApplication springApplication = new SpringApplication(ZBootWebApplication.class);
+        //禁止命令行设置环境参数
+        springApplication.setAddCommandLineProperties(false);
+        springApplication.run(args);
         //BootQueueReceiver receiver = (BootQueueReceiver) context.getBean("bootQueueReceiver");
         //receiver.receive();
     }
