@@ -1,6 +1,5 @@
 package com.boot.web.interceptor;
 
-import com.boot.web.defaultcontroller.DefaultController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,17 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  **/
 public class LoginInterceptor implements HandlerInterceptor {
 
-    public static final Logger logger = LoggerFactory.getLogger(DefaultController.class);
+    public static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        Object obj = httpServletRequest.getSession().getAttribute("user");
+        /*Object obj = httpServletRequest.getSession().getAttribute("user");
         if (null == obj) {
             logger.error("未登录");
-            return true;
-            //throw new Exception("未登录");
+            throw new Exception("未登录");
         }
-        logger.info("用户信息:" + obj);
+        logger.info("用户信息:" + obj);*/
         return true;
     }
 

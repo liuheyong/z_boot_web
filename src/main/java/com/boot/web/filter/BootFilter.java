@@ -1,5 +1,8 @@
 package com.boot.web.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -10,19 +13,21 @@ import java.io.IOException;
  **/
 public class BootFilter implements Filter {
 
+    public static final Logger logger = LoggerFactory.getLogger(BootFilter.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("======开始init======");
+        logger.info("==========Filter开始init==========");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("进入到filter中");
+        logger.info("==========进入到filter==========");
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override
     public void destroy() {
-        System.out.println("======开始destroy======");
+        logger.info("==========Filter开始destroy==========");
     }
 }

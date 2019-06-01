@@ -1,6 +1,5 @@
 package com.boot.web.activemqreceiver;
 
-import com.boot.web.listener.MyMessageListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import javax.jms.TextMessage;
 @Component("bootQueueReceiver")
 public class BootQueueReceiver {
 
-    public static final Logger logger = LoggerFactory.getLogger(MyMessageListener.class);
+    public static final Logger logger = LoggerFactory.getLogger(BootQueueReceiver.class);
 
     @Autowired
     private JmsTemplate jmsTemplate;

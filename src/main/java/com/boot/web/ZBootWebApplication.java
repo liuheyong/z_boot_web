@@ -2,6 +2,8 @@ package com.boot.web;
 
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import com.boot.web.defaultcontroller.DefaultController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +18,9 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @ComponentScan("com.boot.web.*")
 @EnableDubboConfiguration
 @Order(value = 1)
-public class ZBootWebApplication extends DefaultController implements CommandLineRunner {
+public class ZBootWebApplication implements CommandLineRunner {
+
+    public static final Logger logger = LoggerFactory.getLogger(ZBootWebApplication.class);
 
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ZBootWebApplication.class);
@@ -36,7 +40,7 @@ public class ZBootWebApplication extends DefaultController implements CommandLin
     @Override
     public void run(String... strings) {
         try {
-            System.out.println("========随boot启动而执行========");
+            logger.info("============随boot启动而执行============");
         } catch (Exception e) {
             logger.error("启动异常", e);
             e.printStackTrace();

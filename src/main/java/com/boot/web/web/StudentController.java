@@ -1,6 +1,7 @@
 package com.boot.web.web;
 
 import com.boot.commons.dto.Student;
+import com.boot.web.defaultcontroller.DefaultController;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @description: 接收xml数据测试
  **/
 @Controller
-public class StudentController {
+public class StudentController extends DefaultController {
 
     @RequestMapping(value = "/student",
             consumes = MediaType.APPLICATION_XML_VALUE,

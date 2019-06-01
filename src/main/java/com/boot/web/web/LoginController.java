@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController extends DefaultController {
 
     @RequestMapping("/login")
-    public String toLogin() {
+    public String toLogin(ModelMap map) {
+        map.addAttribute("message", "login");
         return "login";
     }
 
@@ -24,6 +25,12 @@ public class LoginController extends DefaultController {
         map.addAttribute("host", "http://wenyixicodedog.com");
         // return模板⽂件的名称，对应src/main/resources/templates/index.html
         return "index";
+    }
+
+    @RequestMapping("/hello")
+    public String hello(ModelMap map) {
+        map.addAttribute("message", "hello");
+        return "hello";
     }
 
 }
