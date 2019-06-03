@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
- * @program: z_boot_commons
  * @author: jack
  * @create: 2019-06-02
  * @description: spring aop
@@ -41,6 +40,9 @@ public class AopAspect {
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        if (null == request) {
+            logger.info("=======request为null=======");
+        }
         // 记录下请求内容
         logger.info("请求的URL为 : " + request.getRequestURL().toString());
         logger.info("请求的HTTP_METHOD为 : " + request.getMethod());

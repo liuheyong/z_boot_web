@@ -3,15 +3,19 @@ package com.boot.web.web;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.boot.commons.constants.Constants;
 import com.boot.commons.dto.ECooperateMer;
+import com.boot.commons.response.QueryECooperateMerResponse;
 import com.boot.commons.response.Result;
 import com.boot.commons.service.ECooperateMerService;
 import com.boot.web.defaultcontroller.DefaultController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author: LiuHeYong
@@ -80,8 +84,8 @@ public class ECooperateMerController extends DefaultController {
             for (int i = 0; i < 100; i++) {
                 executorService.submit(runnable);
             }
-            List<ECooperateMer> list = eCooperateMerService.queryECooperateMerListPage(eCooperateMer);
-            model.put("eCooperateMerList", list);
+            QueryECooperateMerResponse response = eCooperateMerService.queryECooperateMerListPage(eCooperateMer);
+            model.put("eCooperateMerList", response.geteCooperateMerList());
             result.setResultCode(Constants.RESULT_SUCCESS);
             result.setResultData(model);
         } catch (Exception e) {

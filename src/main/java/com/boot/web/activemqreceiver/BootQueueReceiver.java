@@ -13,7 +13,7 @@ import javax.jms.TextMessage;
 /**
  * @author: LiuHeYong
  * @create: 2019-05-28
- * @description:
+ * @description: bootQueueReceiver
  **/
 @Component("bootQueueReceiver")
 public class BootQueueReceiver {
