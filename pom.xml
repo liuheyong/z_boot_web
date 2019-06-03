@@ -164,6 +164,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!--cache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!--ldap-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-ldap</artifactId>
+        </dependency>
+        <!--nboundid-ldapsdk 主要是为了在这⾥使⽤嵌⼊式的LDAP服务端来进⾏测试操作，所
+        以 scope 设置为了test，实际应⽤中，我们通常会连接真实的、独⽴部署的LDAP服务器，所以不需
+        要此项依赖-->
+        <dependency>
+            <groupId>com.unboundid</groupId>
+            <artifactId>unboundid-ldapsdk</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 @RestController
 public class ECooperateMerController extends DefaultController {
 
-    @Reference(check = false, version = "1.0.0", timeout = 10000)
+    @Reference(check = false, version = "1.0.0", timeout = 60000)
     ECooperateMerService eCooperateMerService;
 
     /**
