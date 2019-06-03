@@ -8,10 +8,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
+
+/**
+ * @author: LiuHeYong
+ * @create: 2019-05-28
+ * @description: ZBootWebApplication
+ **/
+@EnableScheduling
+@EnableAsync
 @EnableCaching
 @EnableRedisHttpSession
 @SpringBootApplication
@@ -46,4 +61,25 @@ public class ZBootWebApplication implements CommandLineRunner {
             e.printStackTrace();
         }
     }
+
+    /**
+     * @date: 2019/5/28
+     * @description: 在Spring Boot主类中定义⼀个线程池
+     */
+    @EnableAsync
+    @Configuration
+    class TaskPoolConfig {
+        @Bean("taskExecutor")
+        public Executor taskExecutor() {
+            ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+            executor.setCorePoolSize(10);
+            executor.setMaxPoolSize(20);
+            executor.setQueueCapacity(200);
+            executor.setKeepAliveSeconds(60);
+            executor.setThreadNamePrefix("taskExecutor-");
+            executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+            return executor;
+        }
+    }
+
 }
