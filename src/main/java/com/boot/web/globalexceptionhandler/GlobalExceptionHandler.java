@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
      * @description: exceptionErrorHandler
      */
     @ExceptionHandler(value = Exception.class)
-    public ModelAndView exceptionErrorHandler(HttpServletRequest request, Exception e) {
+    public ModelAndView exceptionErrorHandler(HttpServletRequest request, Exception e) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e);
         mav.addObject("url", request.getRequestURL());
@@ -36,12 +36,12 @@ public class GlobalExceptionHandler {
     /**
      * @date: 2019/5/31
      * @param: [request, e]
-     * @return: org.springframework.web.servlet.ModelAndView
-     * @description: nullPointerExceptionErrorHandler
+     * @return: Result
+     * @description: myExceptionErrorHandler
      */
     @ExceptionHandler(value = MyException.class)
     @ResponseBody
-    public Result myExceptionErrorHandler(HttpServletRequest request, Exception e) {
+    public Result myExceptionErrorHandler(HttpServletRequest request, MyException e) throws Exception {
         Result result = new Result();
         result.setResultMessage(e.getMessage());
         result.setResultCode(Constants.RESULT_FAIL);

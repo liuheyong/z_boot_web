@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController extends DefaultController {
 
     @RequestMapping("/login")
-    public String toLogin(ModelMap map) {
-        map.addAttribute("message", "login");
+    public String toLogin() {
         return "login";
     }
 
@@ -28,8 +27,7 @@ public class LoginController extends DefaultController {
     }
 
     @RequestMapping("/hello")
-    public String hello(ModelMap map) {
-        map.addAttribute("message", "hello");
+    public String hello() {
         return "hello";
     }
 

@@ -7,15 +7,16 @@ import com.boot.commons.response.QueryECooperateMerResponse;
 import com.boot.commons.response.Result;
 import com.boot.commons.service.ECooperateMerService;
 import com.boot.web.defaultcontroller.DefaultController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author: LiuHeYong
@@ -24,6 +25,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  **/
 @RestController
 public class ECooperateMerController extends DefaultController {
+
+    public static final Logger logger = LoggerFactory.getLogger(ECooperateMerController.class);
 
     @Reference(check = false, version = "1.0.0", timeout = 60000)
     ECooperateMerService eCooperateMerService;
@@ -81,7 +84,7 @@ public class ECooperateMerController extends DefaultController {
             };
             //创建线程池
             ExecutorService executorService = Executors.newFixedThreadPool(25);
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < Constants.NUMBER_100; i++) {
                 executorService.submit(runnable);
             }
             QueryECooperateMerResponse response = eCooperateMerService.queryECooperateMerListPage(eCooperateMer);

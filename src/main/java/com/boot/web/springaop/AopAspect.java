@@ -37,12 +37,9 @@ public class AopAspect {
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) {
         startTime.set(System.currentTimeMillis());
-        // 接收到请求，记录请求内容
+        // 获取请求
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        if (null == request) {
-            logger.info("=======request为null=======");
-        }
         // 记录下请求内容
         logger.info("请求的URL为 : " + request.getRequestURL().toString());
         logger.info("请求的HTTP_METHOD为 : " + request.getMethod());
