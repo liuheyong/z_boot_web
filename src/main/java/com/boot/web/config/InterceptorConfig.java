@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author: LiuHeYong
  * @create: 2019-05-28
- * @description:
+ * @description: InterceptorConfig
  **/
 @Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
