@@ -13,7 +13,7 @@
     <groupId>com.boot.web</groupId>
     <artifactId>z_boot_web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>z_boot_web Maven Webapp</name>
     <url>http://www.example.com</url>
