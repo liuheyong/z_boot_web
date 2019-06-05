@@ -30,11 +30,4 @@ public class DefaultController implements Cloneable, Serializable {
     public static Student student05 = new Student("han", 94);
     public static List<Student> studentList = Lists.newArrayList(student01, student02, student03, student04, student05);
 
-    public static ThreadPoolExecutor executor = new ThreadPoolExecutor(
-            10,
-            64,
-            1000,
-            TimeUnit.MILLISECONDS,
-            new ArrayBlockingQueue(10));
-
 }

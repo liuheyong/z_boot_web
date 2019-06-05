@@ -1,6 +1,8 @@
 package com.boot.web.activemqreceiver;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.jms.*;
 
@@ -10,6 +12,8 @@ import javax.jms.*;
  * @description:
  **/
 public class QueueReceiver {
+
+    public static final Logger logger = LoggerFactory.getLogger(QueueReceiver.class);
 
     public static void main(String[] args) {
         receive();
@@ -28,7 +32,7 @@ public class QueueReceiver {
             connection.start();//如读消息前必须先start否则无法读取消息
             Message message = mc.receive();
             if (message instanceof TextMessage) {
-                System.out.println(((TextMessage) message).getText());
+                logger.info(((TextMessage) message).getText());
             }
         } catch (JMSException e) {
             e.printStackTrace();

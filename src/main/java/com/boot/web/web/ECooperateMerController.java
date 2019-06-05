@@ -3,13 +3,18 @@ package com.boot.web.web;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.boot.commons.constants.Constants;
 import com.boot.commons.dto.ECooperateMer;
+import com.boot.commons.response.QueryECooperateMerResponse;
 import com.boot.commons.response.Result;
 import com.boot.commons.service.ECooperateMerService;
 import com.boot.web.defaultcontroller.DefaultController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,7 +26,9 @@ import java.util.concurrent.Executors;
 @RestController
 public class ECooperateMerController extends DefaultController {
 
-    @Reference(check = false, version = "1.0.0", timeout = 10000)
+    public static final Logger logger = LoggerFactory.getLogger(ECooperateMerController.class);
+
+    @Reference(check = false, version = "1.0.0", timeout = 60000)
     ECooperateMerService eCooperateMerService;
 
     /**
@@ -77,11 +84,11 @@ public class ECooperateMerController extends DefaultController {
             };
             //创建线程池
             ExecutorService executorService = Executors.newFixedThreadPool(25);
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < Constants.NUMBER_100; i++) {
                 executorService.submit(runnable);
             }
-            List<ECooperateMer> list = eCooperateMerService.queryECooperateMerListPage(eCooperateMer);
-            model.put("eCooperateMerList", list);
+            QueryECooperateMerResponse response = eCooperateMerService.queryECooperateMerListPage(eCooperateMer);
+            model.put("eCooperateMerList", response.geteCooperateMerList());
             result.setResultCode(Constants.RESULT_SUCCESS);
             result.setResultData(model);
         } catch (Exception e) {
