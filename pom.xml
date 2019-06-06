@@ -190,6 +190,12 @@
             <artifactId>com.springsource.org.apache.velocity</artifactId>
             <version>1.6.2</version>
         </dependency>
+        <!--spring-statemachine-->
+        <dependency>
+            <groupId>org.springframework.statemachine</groupId>
+            <artifactId>spring-statemachine-core</artifactId>
+            <version>1.2.0.RELEASE</version>
+        </dependency>
         <!--ldap-->
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
