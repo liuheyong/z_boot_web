@@ -3,7 +3,6 @@ package com.boot.web.javamailsender;
 import com.boot.commons.constants.Constants;
 import com.boot.web.defaultcontroller.DefaultController;
 import org.apache.commons.collections4.map.HashedMap;
-import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -111,7 +109,7 @@ public class BootMailSender extends DefaultController {
      */
     @RequestMapping(value = Constants.BOOT + "/sendTemplateMail")
     public void sendTemplateMail() throws Exception {
-        VelocityEngine velocityEngine = new VelocityEngine();
+        // VelocityEngine velocityEngine = new VelocityEngine();
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -120,8 +118,8 @@ public class BootMailSender extends DefaultController {
             helper.setSubject("主题：模板邮件");
             Map<String, Object> model = new HashedMap(4);
             model.put("username", "didi");
-            String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "template.vm", "UTF-8", model);
-            helper.setText(text, true);
+            // String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, "template.vm", "UTF-8", model);
+            // helper.setText(text, true);
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             logger.error("邮件发送异常", e);
