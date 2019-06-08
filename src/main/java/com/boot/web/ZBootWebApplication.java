@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +42,10 @@ public class ZBootWebApplication implements CommandLineRunner {
         SpringApplication springApplication = new SpringApplication(ZBootWebApplication.class);
         //禁止命令行设置环境参数
         springApplication.setAddCommandLineProperties(false);
-        springApplication.run(args);
+        ApplicationContext context = springApplication.run(args);
+        //赋值ApplicationContext,以便随时手动获取bean
+        SpringBeanUtil.setApplicationContext(context);
+        logger.info("======获取到ApplicationContext======" + SpringBeanUtil.getApplicationContext());
         //BootQueueReceiver receiver = (BootQueueReceiver) context.getBean("bootQueueReceiver");
         //receiver.receive();
     }
