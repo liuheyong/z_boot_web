@@ -9,7 +9,7 @@ package com.boot.web.rabbitmqreceiver;
 @RabbitListener(queues = "RabbitMQQueueDestination")
 public class RabbitMQReceiver {
 
-    private static final Logger logger = LoggerFactory.getLogger(RabbitMQReceiver.class);
+    private templates final Logger logger = LoggerFactory.getLogger(RabbitMQReceiver.class);
 
     @RabbitHandler
     public void receive(String message) {
