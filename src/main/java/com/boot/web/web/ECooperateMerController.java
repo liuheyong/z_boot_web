@@ -28,7 +28,7 @@ public class ECooperateMerController extends DefaultController {
 
     public static final Logger logger = LoggerFactory.getLogger(ECooperateMerController.class);
 
-    @Reference(check = false, version = "1.0.0", timeout = 60000)
+    @Reference(check = false, version = "1.0.0", timeout = 40000)
     ECooperateMerService eCooperateMerService;
 
     /**
